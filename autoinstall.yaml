@@ -2,6 +2,11 @@
 autoinstall:
   version: 1
 
+  identity:
+    hostname: ubuntu-oem
+    username: oem
+    password: "HHuhUIk{'_)(&&8U*iJ^5^^&"
+
   storage:
     layout:
       name: lvm
@@ -9,14 +14,11 @@ autoinstall:
   packages:
     - vim
     - oem-config
-    - oem-config-prepare
 
   late-commands:
     - curtin in-target -- apt update
-
     - curtin in-target -- bash -c 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb'
     - curtin in-target -- apt install -y /tmp/google-chrome.deb
-
     - curtin in-target -- apt install -y vlc
     - curtin in-target -- apt install -y libreoffice
     - curtin in-target -- apt install -y flatpak
@@ -24,6 +26,4 @@ autoinstall:
     - curtin in-target -- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     - curtin in-target -- apt install -y cheese
     - curtin in-target -- apt install -y simple-scan
-
-    # Prepare the installed system for the eventual owner
     - curtin in-target -- oem-config-prepare --quiet
