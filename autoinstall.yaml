@@ -1,18 +1,29 @@
+#cloud-config
 autoinstall:
   version: 1
+
   storage:
     layout:
       name: lvm
+
   packages:
     - vim
+    - oem-config
+    - oem-config-prepare
+
   late-commands:
     - curtin in-target -- apt update
-    - curtin in-target -- bash -c "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb"
-    - curtin in-target -- bash -c "apt install -y /tmp/google-chrome.deb"
-    - curtin in-target -- apt install vlc
-    - curtin in-target -- apt install libreoffice
-    - curtin in-target -- apt install flatpak
-    - curtin in-target -- apt install gnome-software-plugin-flatpak
+
+    - curtin in-target -- bash -c 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb'
+    - curtin in-target -- apt install -y /tmp/google-chrome.deb
+
+    - curtin in-target -- apt install -y vlc
+    - curtin in-target -- apt install -y libreoffice
+    - curtin in-target -- apt install -y flatpak
+    - curtin in-target -- apt install -y gnome-software-plugin-flatpak
     - curtin in-target -- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    - curtin in-target -- apt install cheese
-    - curtin in-target -- apt install simple-scan
+    - curtin in-target -- apt install -y cheese
+    - curtin in-target -- apt install -y simple-scan
+
+    # Prepare the installed system for the eventual owner
+    - curtin in-target -- oem-config-prepare --quiet
