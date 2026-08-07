@@ -1,6 +1,10 @@
 #cloud-config
 autoinstall:
   version: 1
+   identity:
+    hostname: ubuntu-oem
+    username: oem
+    password: "HHuhUIk{'_)(&&8U*iJ^5^^&"
  storage:
     layout:
       name: lvm
