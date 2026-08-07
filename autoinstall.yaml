@@ -7,7 +7,8 @@ autoinstall:
     - vim
   late-commands:
     - curtin in-target -- apt update
-    - curtin in-target -- apt install chrome
+    - curtin in-target -- bash -c "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb"
+    - curtin in-target -- bash -c "apt install -y /tmp/google-chrome.deb"
     - curtin in-target -- apt install vlc
     - curtin in-target -- apt install libreoffice
     - curtin in-target -- apt install flatpak
