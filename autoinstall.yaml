@@ -14,3 +14,5 @@ autoinstall:
     - curtin in-target -- apt install flatpak
     - curtin in-target -- apt install gnome-software-plugin-flatpak
     - curtin in-target -- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    - curtin in-target -- apt install cheese
+    - curtin in-target -- apt install simple-scan
