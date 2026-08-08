@@ -8,7 +8,7 @@ autoinstall:
 
   packages:
     - vim
-    - oem-config
+    - chromium
 
   late-commands:
     - curtin in-target -- apt update
