@@ -9,13 +9,13 @@ autoinstall:
   packages:
     - vim
     - chromium
+    - simple-scan
+    - cheese
+    - vlc
 
   late-commands:
     - curtin in-target -- apt update
-    - curtin in-target -- apt install -y vlc
     - curtin in-target -- apt install -y libreoffice
     - curtin in-target -- apt install -y flatpak
     - curtin in-target -- apt install -y gnome-software-plugin-flatpak
     - curtin in-target -- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    - curtin in-target -- apt install -y cheese
-    - curtin in-target -- apt install -y simple-scan
